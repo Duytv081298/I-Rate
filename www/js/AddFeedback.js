@@ -2,6 +2,7 @@ var restaurant
 var service_Rating = 5
 var cleanliness_Rating = 5
 var food_Quality_Rating = 5
+let feedback
 
 db = firebase.firestore();
 function init() {
@@ -122,32 +123,123 @@ function renderRating() {
 
 function pushData() {
     var user = firebase.auth().currentUser;
-    console.log(user.email)
     let reporter = document.getElementById("Reporter").value
     let name = restaurant.restaurant_Name
+    let type = restaurant.restaurant_type
     let price = document.getElementById("price").value
     let time_visit = document.getElementById("time_visit").value
     let notes = document.getElementById("note").value
-    alert("Hello! I am an alert box!");
-    // let feedback = {
-    //     "assessor": {
-    //         "name": reporter,
-    //         "email": user.email
-    //     },
-    //     "Foo_Quality_Rating": food_Quality_Rating,
-    //     "cleanliness_Rating": cleanliness_Rating,
-    //     "service_Rating": service_Rating,
-    //     "time_visit": time_visit,
-    //     "note": notes,
-    //     "price": price
-    // }
-    // ref = db.collection("restaurant").doc(name)
-    // ref.update({
-    //     feedback: firebase.firestore.FieldValue.arrayUnion(feedback)
-    // }).then(function () {
-    //     console.log("Document successfully written!");
-    // })
-    //     .catch(function (error) {
-    //         console.error("Error writing document: ", error);
-    //     });
+
+    if (validateInput(reporter, time_visit, price)) {
+        feedback = {
+            "assessor": {
+                "name": reporter,
+                "email": user.email
+            },
+            "Foo_Quality_Rating": food_Quality_Rating,
+            "cleanliness_Rating": cleanliness_Rating,
+            "service_Rating": service_Rating,
+            "time_visit": time_visit,
+            "note": notes,
+            "price": price,
+            "created_date": new Date().toDateString()
+        }
+        document.getElementById("Add_Feedback").setAttribute("data-toggle", "modal");
+        document.getElementById("Add_Feedback").setAttribute("data-target", "#exampleModal");
+        document.getElementById("addConfirm").innerHTML = `
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title text-center" id="exampleModalLabel">Response by `+ reporter + `</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+        <table class="table table-borderless">
+  <tbody>
+    <tr>
+      <th scope="row">Restaurant Name</th>
+      <td>`+ name + `</td>
+    </tr>
+    <tr>
+      <th scope="row">Restaurant type</th>
+      <td>`+ type + `</td>
+    </tr>
+    <tr>
+      <th scope="row">Date and time of the visit</th>
+      <td>`+ time_visit + `</td>
+    </tr>
+    <tr>
+      <th scope="row">Average meal price per person</th>
+      <td>`+ price + `</td>
+    </tr>
+    <tr>    
+      <th scope="row">Service rating</th>
+      <td>`+ service_Rating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
+    </tr>
+    <tr>
+      <th scope="row">Cleanliness rating</th>
+      <td>`+ cleanliness_Rating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
+    </tr>
+    <tr>
+      <th scope="row">Food quality rating</th>
+      <td>`+ food_Quality_Rating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
+    </tr>
+    <tr>
+      <th scope="row">Notes</th>
+      <td>`+ notes + `</td>
+    </tr>
+  </tbody>
+</table>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button onclick="addData()" type="button" class="btn btn-primary">Add Feedback</button>
+      </div>
+    </div>
+  </div>
+</div>`
+    }
+}
+function addData() {
+    ref = db.collection("restaurant").doc(restaurant.restaurant_Name)
+    ref.update({
+        feedback: firebase.firestore.FieldValue.arrayUnion(feedback)
+    }).then(function () {
+        console.log((restaurant.Foo_Quality_Rating + feedback.Foo_Quality_Rating) / 2)
+        console.log((restaurant.cleanliness_Rating + feedback.cleanliness_Rating) / 2)
+        console.log((restaurant.service_Rating + feedback.service_Rating) / 2)
+        db.collection("restaurant").doc(restaurant.restaurant_Name).update({
+            "Foo_Quality_Rating": (restaurant.Foo_Quality_Rating + feedback.Foo_Quality_Rating) / 2,
+            "cleanliness_Rating": (restaurant.cleanliness_Rating + feedback.cleanliness_Rating) / 2,
+            "service_Rating": (restaurant.service_Rating + feedback.service_Rating) / 2,
+        })
+            .then(function () {
+                alert('Your response has been sent')
+                window.location.href = "Home.html"
+            });
+
+    })
+        .catch(function (error) {
+            console.error("Error writing document: ", error);
+        });
+}
+
+function validateInput(reporter, time_visit, price) {
+    let arr = []
+    let errorMessage = ''
+    if (!reporter) arr.push('Name of the reporter')
+    if (!time_visit) arr.push('Date and time of the visit')
+    if (!price) arr.push('Average meal price per person')
+    if (!reporter || !time_visit || !price) {
+        arr.forEach(element => {
+            errorMessage += (element + ' \n \ ')
+        });
+        alert('You must input all field: \n \ ' + errorMessage)
+        return false
+    } else return true
 }

@@ -78,7 +78,7 @@ function renderFeedback(){
         feedbackInner += `<div class="card my-3" style="width: 100%">
             <div class="card-body">
                 <div class="card-title h4"><i class="fa fa-user-circle" aria-hidden="true"></i>`+element.assessor.name+`</div>
-                <h6 class="card-subtitle mb-2 text-muted">October 4 at 4:54 PM</h6>
+                <h6 class="card-subtitle mb-2 text-muted">`+element.created_date+`</h6>
                 <p class="card-text">`+ element.note+`</p>
                 <div class="row">
                     <p class="col-6">Food Quality Rating</p>
