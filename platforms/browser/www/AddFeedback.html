@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <title>Document</title>
+    <title>Add feedback</title>
 </head>
 
 <body class="container-fluid">
@@ -38,17 +38,36 @@
             </div>
         </div>
     </div>
+    <div id="content" style="margin-top: 19%;"></div>
 
-    <div id="content" style="margin-top: 15%;"></div>
+    <form>
+        <div class="form-group">
+            <label>Reporter</label>
+            <input id="Reporter" type="text" class="form-control" required>
+        </div>
+        <div id="inputName" class="form-group"></div>
+        <div id="inputType" class="form-group"></div>
+        <div class="form-group">
+            <label>Date and time of the visit:</label>
+            <input id="time_visit" type="date" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Average meal price per person</label>
+            <input id="price" type="number"class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label>Notes</label>
+            <textarea id="note" class="form-control" rows="3"></textarea>
+        </div>
+        <div id="renderStar"></div>
+       
+    </form>
     <div class="row justify-content-center my-2">
-        <button onclick="goToAddFeedback()" type="button" class="btn btn-outline-primary">Add feedback for the restaurant</button>
+        <button type="submit" onclick="pushData()" class="btn btn-primary">Add Feedback</button>
     </div>
-    <div style="width: 100%; height: 2px;" class="shadow-lg bg-secondary"></div>
-    <div id="feedback" class="mt-3"></div>
-
     <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase.js"></script>
     <script type="text/javascript" src="firebase/firebaseConfig.js"></script>
-    <script type="text/javascript" src="js/DetailRestaurant.js"></script>
+    <script type="text/javascript" src="js/AddFeedback.js"></script>
 </body>
 
 </html>

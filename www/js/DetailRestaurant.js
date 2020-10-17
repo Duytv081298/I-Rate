@@ -11,11 +11,15 @@ var restaurant = JSON.parse(localStorage.getItem('detailRestaurant'))
 function goBack() {
     window.history.back();
 }
+function goToAddFeedback(){
+    window.location.href = "AddFeedback.html";
+}
 function init (){
     renderDetailRestaurant();
     renderFeedback();
 }
 init()
+
 function renderDetailRestaurant() {
     let content = ''
     content += `
@@ -63,10 +67,7 @@ function renderDetailRestaurant() {
                     </tr>
                 </tbody>
             </table>
-</div>
-
-`
-
+</div>`
     document.getElementById("content").innerHTML = content
 }
 

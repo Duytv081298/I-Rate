@@ -87,7 +87,6 @@ function goToDetail(i) {
     console.log(data[i])
     localStorage.setItem('detailRestaurant', JSON.stringify(data[i]));
     window.location.href = "DetailRestaurant.html";
-
 }
 
 function viewData(){
@@ -174,12 +173,12 @@ function renderStar(rating){
     }
     for ( var i = 1; i <= 5; i++) {
         if (natural >= i){
-            render += `<i class="fa fa-star" style="font-size:20px;color:#0099FF"></i>`
+            render += `<i id="star`+i+`" class="fa fa-star" style="font-size:20px;color:#0099FF"></i>`
         } else if (natural + 1 == i && decimal > 0){
                 render += `<i class="fa fa-star-half-empty" style="font-size:20px;color:#0099FF"></i>`
             
         }else if(natural < i){
-            render += `<i class="fa fa-star-o" style="font-size:20px;color:#0099FF"></i>`
+            render += `<i id="star` + i +`"class="fa fa-star-o" style="font-size:20px;color:#0099FF"></i>`
         }
     }
     return render
