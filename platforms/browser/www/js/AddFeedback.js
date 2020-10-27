@@ -16,21 +16,21 @@ function goBack() {
 }
 function renderRestaurant() {
     let content = ''
-    content += ` <p class="h5 text-center"> Add feedback for restaurant</p> <p class="h5 text-center">` + restaurant.restaurant_Name + `</p>`
+    content += ` <p class="h5 text-center"> Add feedback</p> <p class="h5 text-center">for restaurant ` + restaurant.restaurant_Name + `</p>`
     document.getElementById("content").innerHTML = content
     document.getElementById("inputName").innerHTML = `<label>Restaurant Name:</label>
-            <input type="text" value="` + restaurant.restaurant_Name + `" class="form-control" disabled>`
+            <input type="text" value="` + restaurant.restaurant_Name + `" class="form-control text-dark border py-4" disabled>`
     document.getElementById("inputType").innerHTML = `<label>Restaurant type:</label>
-            <input type="text" value="` + restaurant.restaurant_type + `" class="form-control" disabled>`
+            <input type="text" value="` + restaurant.restaurant_type + `" class="form-control text-dark border py-4" disabled>`
 
 }
 function renderServiceStar() {
     let star = ''
     for (let i = 1; i <= 5; i++) {
         if (i <= service_Rating) {
-            star += `<i onclick="setServiceRating(` + i + `)" class="fa fa-star" style="font-size:20px;color:#0099FF"></i>`
+            star += `<i onclick="setServiceRating(` + i + `)" class="fa fa-star" style="font-size:xx-large;color:#0099FF"></i>`
         } else {
-            star += `<i onclick="setServiceRating(` + i + `)" class="fa fa-star-o" style="font-size:20px;color:#0099FF"></i>`
+            star += `<i onclick="setServiceRating(` + i + `)" class="fa fa-star-o" style="font-size:x-large;color:#0099FF"></i>`
         }
     }
     return star
@@ -39,9 +39,9 @@ function renderCleanlinessStar() {
     let star = ''
     for (let i = 1; i <= 5; i++) {
         if (i <= cleanliness_Rating) {
-            star += `<i onclick="setCleanlinessRating(` + i + `)" class="fa fa-star" style="font-size:20px;color:#0099FF"></i>`
+            star += `<i onclick="setCleanlinessRating(` + i + `)" class="fa fa-star" style="font-size:xx-large;color:#0099FF"></i>`
         } else {
-            star += `<i onclick="setCleanlinessRating(` + i + `)" class="fa fa-star-o" style="font-size:20px;color:#0099FF"></i>`
+            star += `<i onclick="setCleanlinessRating(` + i + `)" class="fa fa-star-o" style="font-size:x-large;color:#0099FF"></i>`
         }
     }
     return star
@@ -50,9 +50,9 @@ function renderFoodQualityStar() {
     let star = ''
     for (let i = 1; i <= 5; i++) {
         if (i <= food_Quality_Rating) {
-            star += `<i onclick="setFoodQualityRating(` + i + `)" class="fa fa-star" style="font-size:20px;color:#0099FF"></i>`
+            star += `<i onclick="setFoodQualityRating(` + i + `)" class="fa fa-star" style="font-size:xx-large;color:#0099FF"></i>`
         } else {
-            star += `<i onclick="setFoodQualityRating(` + i + `)" class="fa fa-star-o" style="font-size:20px;color:#0099FF"></i>`
+            star += `<i onclick="setFoodQualityRating(` + i + `)" class="fa fa-star-o" style="font-size:x-large;color:#0099FF"></i>`
         }
     }
     return star
@@ -71,19 +71,19 @@ function setFoodQualityRating(i) {
 }
 function renderRating() {
     document.getElementById("renderStar").innerHTML = `<div class="row">
-                    <p class="col-6">Food Quality Rating</p>
+                    <p class="col-6">Food Quality Rating:</p>
                     <div class="col-6">
                         <p>`+ renderServiceStar() + `</p>
                     </div>
                 </div>
                 <div class="row">
-                    <p class="col-6">Cleanliness Rating</p>
+                    <p class="col-6">Cleanliness Rating:</p>
                     <div class="col-6">
                         <p>`+ renderCleanlinessStar() + `</p>
                     </div>
                 </div>
                 <div class="row">
-                    <p class="col-6">Service Rating</p>
+                    <p class="col-6">Service Rating:</p>
                     <div class="col-6">
                         <p>`+ renderFoodQualityStar() + `</p>
                     </div>

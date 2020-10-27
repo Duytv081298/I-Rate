@@ -16,32 +16,35 @@
         integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
         crossorigin="anonymous"></script>
     <title>Hello World</title>
+    <link rel="stylesheet" href="css/index.css">
 </head>
-<body class="container">
-    <p class=" h3 text-center"> Login</p>
 
-    <div class="row justify-content-center">
-        <form class="col-12">
-            <div class="form-group">
-                <label for="exampleInputEmail1">Email address</label>
-                <input type="email" class="form-control" id="email_field" aria-describedby="emailHelp"
-                    placeholder="Enter email">
-                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                    else.</small>
+
+<body class="container">
+    <div class="row">
+        <div class="col-12 align-self-center">
+            <div class="row justify-content-center">
+                <img style="width: 50%;" src="./img/icon/logo.png" alt="Logo">
             </div>
+        </div>
+    </div>
+    <p id="login" class="h1 text-center">Login</p>
+    <div class="row justify-content-center mt-4">
+        <form class="col-12 mb-3">
             <div class="form-group">
-                <label for="exampleInputPassword1">Password</label>
-                <input type="password" class="form-control" id="password_field" placeholder="Password" autocomplete="on">
+                <input type="email" class="form-control border py-4" id="email_field" placeholder="Email">
             </div>
-            <div class="form-check">
+            <div class="form-group pt-2">
+                <input type="password" class="form-control border py-4" id="password_field" placeholder="Password">
+            </div>
+            <div class="form-check pl-4">
                 <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Check me out</label>
+                <label class="form-check-label" for="exampleCheck1">Remember me</label>
             </div>
         </form>
-        <button type="submit" onclick="login()" class="btn btn-primary justify-content-center">Login to Account</button>
-        <button type="button" onclick="goToSignUp()" class="btn btn-primary justify-content-center">Sing Up</button>
+        <button type="submit" onclick="login()" class="button btn btn-block text-center mx-2 mb-5"><p class="my-1">LOGIN</p></button>
+        <p class="my-3">Don't have an account?<a onclick="goToSignUp()" class="m-2">SIGN UP</a></p>
 
-        
         <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase.js"></script>
         <script type="text/javascript" src="firebase/firebaseConfig.js"></script>
         <script type="text/javascript" src="js/SingIn.js"></script>

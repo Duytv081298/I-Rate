@@ -34,3 +34,6 @@ function goToLogin() {
         window.location.href = "SignInScreen.html";
     }
 }
+function goLogin(){
+    window.location.href = "SignInScreen.html";
+}

@@ -26,48 +26,47 @@ function renderDetailRestaurant() {
     <p class="text-center h3 mt-5 pt-3 mb-0">`+ restaurant.restaurant_Name + `</p>
     <p class="text-center">( `+ restaurant.restaurant_type + ` )</p>
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-  <ol class="carousel-indicators">
-    <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-    <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-  </ol>
-  <div class="carousel-inner">
-    <div class="carousel-item active">
-      <img src="`+ restaurant.images[0] +`" class="d-block w-100" alt="..." height = 250px>
-    </div>
-    <div class="carousel-item">
-      <img src="`+ restaurant.images[1] +`" class="d-block w-100" alt="..." height = 250px>
-    </div>
-    <div class="carousel-item">
-      <img src="`+ restaurant.images[2] +`" class="d-block w-100" alt="..." height = 250px>
-    </div>
-  </div>
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-    <span class="sr-only">Previous</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-    <span class="sr-only">Next</span>
-  </a>
-  <table class="table table-borderless">
-
-                <tbody>
-                    <tr>
-                        <th scope="row">Food Quality Rating</th>
-                        <td>`+ renderStar(restaurant.Foo_Quality_Rating) + `</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Cleanliness Rating</th>
-                        <td>`+ renderStar(restaurant.cleanliness_Rating) + `</td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Service Rating</th>
-                        <td>`+ renderStar(restaurant.service_Rating) +`</td>
-                    </tr>
-                </tbody>
-            </table>
-</div>`
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="`+ restaurant.images[0] +`" class="d-block w-100" alt="..." height = 250px>
+            </div>
+            <div class="carousel-item">
+                <img src="`+ restaurant.images[1] +`" class="d-block w-100" alt="..." height = 250px>
+            </div>
+            <div class="carousel-item">
+                <img src="`+ restaurant.images[2] +`" class="d-block w-100" alt="..." height = 250px>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+        <table class="table table-borderless">
+            <tbody>
+                <tr>
+                    <th scope="row">Food Quality Rating</th>
+                    <td>`+ renderStar(restaurant.Foo_Quality_Rating) + `</td>
+                </tr>
+                <tr>
+                    <th scope="row">Cleanliness Rating</th>
+                    <td>`+ renderStar(restaurant.cleanliness_Rating) + `</td>
+                </tr>
+                <tr>
+                    <th scope="row">Service Rating</th>
+                    <td>`+ renderStar(restaurant.service_Rating) +`</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>`
     document.getElementById("content").innerHTML = content
 }
 
