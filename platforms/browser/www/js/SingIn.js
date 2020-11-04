@@ -5,7 +5,7 @@ function receive_data(){
         console.log(email)
         document.getElementById("email_field").value = email;
     }else{
-        console.log('chưa có data')
+        console.log('not have data')
     }
 }
 receive_data()
@@ -13,8 +13,6 @@ receive_data()
 function login() {
         var email = document.getElementById("email_field").value;
         var password = document.getElementById("password_field").value;
-        console.log('email: ' + email)
-        console.log('password: ' + password)
         if (email.length < 4) {
             alert('Please enter an email address.');
             return;

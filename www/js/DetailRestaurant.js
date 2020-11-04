@@ -1,20 +1,9 @@
 var restaurant = JSON.parse(localStorage.getItem('detailRestaurant'))
-// function receive_data() {
-//     if (restaurant != null) {
-//         console.log(restaurant)
-//     } else {
-//         console.log('chưa có data')
-//     }
-// }
-// receive_data()
-
-function goBack() {
-    window.history.back();
-}
-function goToAddFeedback(){
+db = firebase.firestore();
+function goToAddFeedback() {
     window.location.href = "AddFeedback.html";
 }
-function init (){
+function init() {
     renderDetailRestaurant();
     renderFeedback();
 }
@@ -33,13 +22,13 @@ function renderDetailRestaurant() {
         </ol>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="`+ restaurant.images[0] +`" class="d-block w-100" alt="..." height = 250px>
+                <img src="`+ restaurant.images[0] + `" class="d-block w-100" alt="..." height = 250px>
             </div>
             <div class="carousel-item">
-                <img src="`+ restaurant.images[1] +`" class="d-block w-100" alt="..." height = 250px>
+                <img src="`+ restaurant.images[1] + `" class="d-block w-100" alt="..." height = 250px>
             </div>
             <div class="carousel-item">
-                <img src="`+ restaurant.images[2] +`" class="d-block w-100" alt="..." height = 250px>
+                <img src="`+ restaurant.images[2] + `" class="d-block w-100" alt="..." height = 250px>
             </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -62,7 +51,7 @@ function renderDetailRestaurant() {
                 </tr>
                 <tr>
                     <th scope="row">Service Rating</th>
-                    <td>`+ renderStar(restaurant.service_Rating) +`</td>
+                    <td>`+ renderStar(restaurant.service_Rating) + `</td>
                 </tr>
             </tbody>
         </table>
@@ -70,15 +59,21 @@ function renderDetailRestaurant() {
     document.getElementById("content").innerHTML = content
 }
 
-function renderFeedback(){
-    let feedback = restaurant.feedback
-    let feedbackInner = ''
-    feedback.forEach(element => {
-        feedbackInner += `<div class="card my-3" style="width: 100%">
+function renderFeedback() {
+    let feedback = []
+    db.collection("feedback")
+        .where("restaurant_Name", "==", restaurant.restaurant_Name).get()
+        .then(function (querySnapshot) {
+            querySnapshot.forEach(function (doc) {
+                feedback.push(doc.data())
+            })
+            let feedbackInner = ''
+            feedback.forEach(element => {
+                feedbackInner += `<div class="card my-3" style="width: 100%">
             <div class="card-body">
-                <div class="card-title h4"><i class="fa fa-user-circle" aria-hidden="true"></i>`+element.assessor.name+`</div>
-                <h6 class="card-subtitle mb-2 text-muted">`+element.created_date+`</h6>
-                <p class="card-text">`+ element.note+`</p>
+                <div class="card-title h4"><i class="fa fa-user-circle" aria-hidden="true"></i>`+ element.assessor.name + `</div>
+                <h6 class="card-subtitle mb-2 text-muted">`+ element.created_date + `</h6>
+                <p class="card-text">`+ element.note + `</p>
                 <div class="row">
                     <p class="col-6">Food Quality Rating</p>
                     <div class="col-6">
@@ -94,14 +89,19 @@ function renderFeedback(){
                 <div class="row">
                     <p class="col-6">Service Rating</p>
                     <div class="col-6">
-                        <p>`+ renderStar(element.service_Rating) +`</p>
+                        <p>`+ renderStar(element.service_Rating) + `</p>
                     </div>
                 </div>
             </div>
-        </div>`
-    });
-     
-        document.getElementById("feedback").innerHTML = feedbackInner
+        </div>
+        
+        `
+            });
+            document.getElementById("feedback").innerHTML = feedbackInner
+        })
+        .catch(function (error) {
+            console.log("Error getting documents: ", error);
+        });
 }
 
 function renderStar(rating) {

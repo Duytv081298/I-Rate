@@ -90,37 +90,6 @@ function renderRating() {
                 </div>
                 `
 }
-
-
-// function pushData(){
-//     // var cityRef = db.collection('cities').doc('BJ');
-
-//     // var setWithMerge = cityRef.set({
-//     //     capital: false
-//     // }, { merge: true })
-
-//     // setWithMerge
-//         // .then(function () {
-//         //     console.log("Document successfully written!");
-//         // })
-//         // .catch(function (error) {
-//         //     console.error("Error writing document: ", error);
-//         // });
-
-//     // var washingtonRef = db.collection("cities").doc("DC");
-
-//     // // Atomically add a new region to the "regions" array field.
-//     // washingtonRef.update({
-//     //     regions: firebase.firestore.FieldValue.arrayUnion("greater_virginia")
-//     // }).then(function () {
-//     //     console.log("Document successfully written!");
-//     // })
-//     //     .catch(function (error) {
-//     //         console.error("Error writing document: ", error);
-//     //     });
-
-// }
-
 function pushData() {
     var user = firebase.auth().currentUser;
     let reporter = document.getElementById("Reporter").value
@@ -136,6 +105,8 @@ function pushData() {
                 "name": reporter,
                 "email": user.email
             },
+            "restaurant_Name": name,
+            "restaurant_type": type,
             "Foo_Quality_Rating": food_Quality_Rating,
             "cleanliness_Rating": cleanliness_Rating,
             "service_Rating": service_Rating,
@@ -147,86 +118,95 @@ function pushData() {
         document.getElementById("Add_Feedback").setAttribute("data-toggle", "modal");
         document.getElementById("Add_Feedback").setAttribute("data-target", "#exampleModal");
         document.getElementById("addConfirm").innerHTML = `
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-center" id="exampleModalLabel">Response by `+ reporter + `</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-      
-        <table class="table table-borderless">
-  <tbody>
-    <tr>
-      <th scope="row">Restaurant Name</th>
-      <td>`+ name + `</td>
-    </tr>
-    <tr>
-      <th scope="row">Restaurant type</th>
-      <td>`+ type + `</td>
-    </tr>
-    <tr>
-      <th scope="row">Date and time of the visit</th>
-      <td>`+ time_visit + `</td>
-    </tr>
-    <tr>
-      <th scope="row">Average meal price per person</th>
-      <td>`+ price + `</td>
-    </tr>
-    <tr>    
-      <th scope="row">Service rating</th>
-      <td>`+ service_Rating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
-    </tr>
-    <tr>
-      <th scope="row">Cleanliness rating</th>
-      <td>`+ cleanliness_Rating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
-    </tr>
-    <tr>
-      <th scope="row">Food quality rating</th>
-      <td>`+ food_Quality_Rating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
-    </tr>
-    <tr>
-      <th scope="row">Notes</th>
-      <td>`+ notes + `</td>
-    </tr>
-  </tbody>
-</table>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button onclick="addData()" type="button" class="btn btn-primary">Add Feedback</button>
-      </div>
-    </div>
-  </div>
-</div>`
+            <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title text-center" id="exampleModalLabel">Response by `+ reporter + `</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <table class="table table-borderless">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Restaurant Name</th>
+                                        <td>`+ name + `</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Restaurant type</th>
+                                        <td>`+ type + `</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Date and time of the visit</th>
+                                        <td>`+ time_visit + `</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Average meal price per person</th>
+                                        <td>`+ price + `</td>
+                                    </tr>
+                                    <tr>    
+                                        <th scope="row">Service rating</th>
+                                        <td>`+ service_Rating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Cleanliness rating</th>
+                                        <td>`+ cleanliness_Rating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Food quality rating</th>
+                                        <td>`+ food_Quality_Rating + ` <i class="fa fa-star" style="font-size:20px;color:#0099FF"></i></td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Notes</th>
+                                        <td>`+ notes + `</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button onclick="addData()" type="button" class="btn btn-primary">Add Feedback</button>
+                        </div>
+                    </div>
+                </div>
+            </div>`
     }
 }
-function addData() {
-    ref = db.collection("restaurant").doc(restaurant.restaurant_Name)
-    ref.update({
-        feedback: firebase.firestore.FieldValue.arrayUnion(feedback)
-    }).then(function () {
-        console.log((restaurant.Foo_Quality_Rating + feedback.Foo_Quality_Rating) / 2)
-        console.log((restaurant.cleanliness_Rating + feedback.cleanliness_Rating) / 2)
-        console.log((restaurant.service_Rating + feedback.service_Rating) / 2)
-        db.collection("restaurant").doc(restaurant.restaurant_Name).update({
-            "Foo_Quality_Rating": (restaurant.Foo_Quality_Rating + feedback.Foo_Quality_Rating) / 2,
-            "cleanliness_Rating": (restaurant.cleanliness_Rating + feedback.cleanliness_Rating) / 2,
-            "service_Rating": (restaurant.service_Rating + feedback.service_Rating) / 2,
-        })
-            .then(function () {
-                alert('Your response has been sent')
-                window.location.href = "Home.html"
-            });
 
-    })
+function addData() {
+    db.collection("feedback").add(feedback)
+        .then(function (docRef) {
+            console.log("Document written with ID: ", docRef.id);
+            ref = db.collection("restaurant").doc(restaurant.restaurant_Name)
+            ref.update({
+                feedback: firebase.firestore.FieldValue.arrayUnion(docRef.id)
+            }).then(function () {
+                console.log((restaurant.Foo_Quality_Rating + feedback.Foo_Quality_Rating) / 2)
+                console.log((restaurant.cleanliness_Rating + feedback.cleanliness_Rating) / 2)
+                console.log((restaurant.service_Rating + feedback.service_Rating) / 2)
+                db.collection("restaurant").doc(restaurant.restaurant_Name).update({
+                    "Foo_Quality_Rating": (restaurant.Foo_Quality_Rating + feedback.Foo_Quality_Rating) / 2,
+                    "cleanliness_Rating": (restaurant.cleanliness_Rating + feedback.cleanliness_Rating) / 2,
+                    "service_Rating": (restaurant.service_Rating + feedback.service_Rating) / 2,
+                })
+                    .then(function () {
+                        alert('Your response has been sent')
+                        window.location.href = "Home.html"
+                    });
+
+            })
+                .catch(function (error) {
+                    console.error("Error writing document: ", error);
+                });
+        })
         .catch(function (error) {
-            console.error("Error writing document: ", error);
+            console.error("Error adding document: ", error);
         });
+
+
+    
 }
 
 function validateInput(reporter, time_visit, price) {

@@ -93,7 +93,6 @@ function viewData(){
     var content = ''
     let i = 0
     data.forEach(restaurant => {
-        
         content +=
             `<div  class="card mx-auto mt-3" style="width: 95%;"  onclick="goToDetail(`+i+`)">
             <div id="carousel`+ i +`" class="carousel slide" data-ride="carousel">
@@ -157,7 +156,6 @@ function viewData(){
         i++
     })
     document.getElementById("content").innerHTML = content
-
 }
 function renderStar(rating){
     let render = ''
@@ -214,7 +212,6 @@ function search(arr){
     }
     
 }
-
 function searchType(element){
     arrType.push(element.innerHTML)
     element.disabled = true;
@@ -245,18 +242,6 @@ function renderSelectSearch(){
     });
     document.getElementById("selectSearch").innerHTML = innerHTMLSearch
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 function addData() {
     var citiesRef = db.collection("restaurant");

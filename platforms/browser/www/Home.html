@@ -17,7 +17,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"
         integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
         crossorigin="anonymous"></script>
-        
+
     <link rel="stylesheet" href="css/index.css">
     <title>Document</title>
 </head>
@@ -55,28 +55,28 @@
                     <div class="row justify-content-around p-3 ">
                         <div class="col-5 card">
                             <div class="row">
-                                <button id="Grill" class="card-body p-0 p-2 align-self-center text-center bg-white " style="border-color: white;"
-                                    onclick="searchType(this)">Grill</button>
+                                <button id="Grill" class="card-body p-0 p-2 align-self-center text-center bg-white "
+                                    style="border-color: white;" onclick="searchType(this)">Grill</button>
                             </div>
                         </div>
                         <div class="col-5 card">
                             <div class="row">
-                                <button id="Fast_food" class="card-body p-0 p-2 align-self-center text-center bg-white " style="border-color: white;"
-                                    onclick="searchType(this)">Fast food</button>
+                                <button id="Fast_food" class="card-body p-0 p-2 align-self-center text-center bg-white "
+                                    style="border-color: white;" onclick="searchType(this)">Fast food</button>
                             </div>
                         </div>
                     </div>
                     <div class="row justify-content-around p-3 ">
                         <div class="col-5 card">
                             <div class="row">
-                                <button id="See_food" class="card-body p-0 p-2 align-self-center text-center bg-white " style="border-color: white;"
-                                    onclick="searchType(this)">See food</button>
+                                <button id="See_food" class="card-body p-0 p-2 align-self-center text-center bg-white "
+                                    style="border-color: white;" onclick="searchType(this)">See food</button>
                             </div>
                         </div>
                         <div class="col-5 card">
                             <div class="row">
-                                <button id="Hot_Pot" class="card-body p-0 p-2 align-self-center text-center bg-white " style="border-color: white;"
-                                    onclick="searchType(this)">Hot Pot</button>
+                                <button id="Hot_Pot" class="card-body p-0 p-2 align-self-center text-center bg-white "
+                                    style="border-color: white;" onclick="searchType(this)">Hot Pot</button>
                             </div>
                         </div>
                     </div>
@@ -86,10 +86,28 @@
     </div>
     <div class="row" id="selectSearch"></div>
     <div id="content" style="margin-top: 15%;"></div>
+
     
     <script src="https://www.gstatic.com/firebasejs/7.22.1/firebase.js"></script>
     <script type="text/javascript" src="firebase/firebaseConfig.js"></script>
     <script type="text/javascript" src="js/Home.js"></script>
+    <script type="text/javascript" src="js/navigator.js"></script>
 </body>
+<footer class="fixed-bottom  text-center bg-white">
+    <div class="row pt-1 justify-content-center">
+        <div class="col-3 align-self-center text-secondary" onclick="goToFeedback()">
+            <i class="fa fa-pencil" style="font-size:25px"></i>
+            <p class="m-0" style="font-size: xx-small; font-weight: bold;">Feedback</p>
+        </div>
+        <div class="col-3 align-self-center text-danger" onclick="goToHome()">
+            <i class="fa fa-home " style="font-size:35px"></i>
+            <p class="m-0" style="font-size: x-small; font-weight: bold;">Home</p>
+        </div>
+        <div class="col-3 align-self-center text-secondary" onclick="goToProfile()">
+            <i class="fa fa-user-o" style="font-size:25px"></i>
+            <p class="m-0" style="font-size: xx-small; font-weight: bold;">Profile</p>
+        </div>
+    </div>
+</footer>
 
 </html>
