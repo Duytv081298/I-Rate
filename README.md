@@ -7,7 +7,7 @@ Products created by Trinh Van Duy.
 
 Everyone can update 🕵️ my latest projects through [Github]
 
-You can donate 💲💲💲 to me through [Facebook] 🤑🤑🤑
+Everyone can donate 💲💲💲 to me through [Facebook] 🤑🤑🤑
 
 [I-Rate-url]: https://github.com/Duytv081298/I-Rate
 [Facebook]: https://www.facebook.com/Duytv98/
